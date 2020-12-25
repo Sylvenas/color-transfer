@@ -1,0 +1,103 @@
+*,
+*:before,
+*:after {
+    border: 0;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    color: #252b33;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+table {
+    border-collapse: collapse;
+    margin: auto;
+}
+
+th,
+td {
+    border: 1px solid #999;
+    padding: 0.375em 0.75em;
+}
+
+thead th {
+    background: #171717;
+    border: 1px solid #171717;
+    color: #ddd;
+}
+
+td:nth-of-type(odd) {
+    background: #ddd;
+}
+
+@media screen and (max-width: 880px) {
+
+    table,
+    thead,
+    tbody,
+    th,
+    td,
+    tr {
+        display: block;
+    }
+
+    th,
+    td {
+        border: 0;
+    }
+
+    td {
+        border-bottom: 1px solid #999;
+    }
+
+    thead tr {
+        position: absolute;
+        top: -99px;
+        left: -99px;
+    }
+
+    tbody th {
+        text-align: left;
+    }
+
+    tbody th,
+    td {
+        position: relative;
+        padding-left: 50%;
+    }
+
+    tbody th:before,
+    td:before {
+        position: absolute;
+        top: 0.375em;
+        left: 0.75em;
+        width: 45%;
+        padding-right: 0.75em;
+        white-space: nowrap;
+    }
+
+    tbody tr:not(:last-of-type) td:last-of-type {
+        border-bottom: 1px solid #171717;
+    }
+
+    tbody th:before {
+        content: "Convert";
+    }
+
+    td:nth-child(2):before {
+        content: "Input 1";
+    }
+
+    td:nth-child(4):before {
+        content: "Input 2";
+    }
+
+    td:nth-child(3):before,
+    td:nth-child(5):before {
+        content: "Output";
+    }
+}
