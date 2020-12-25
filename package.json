@@ -1,6 +1,6 @@
 {
     "name": "color-transfer",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "description": "color transfer",
     "main": "dist/index.js",
     "module": "dist/index.esm.js",
@@ -26,7 +26,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "https://g.hz.netease.com/cloudmusic-frontend/convert-color.git"
+        "url": "https://github.com/lit-forest/color-transfer.git"
     },
     "author": "",
     "license": "ISC"
