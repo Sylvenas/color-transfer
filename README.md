@@ -118,4 +118,4 @@ npm run test
 50种类型转换全部经过单元测试，单元测试代码覆盖率**100%**
 ![单元测试](https://p6.music.126.net/obj/wo3DlcOGw6DClTvDisK1/5145843442/827c/41aa/b619/632d70a18a6c35e469c1497074453aa8.png)
 ## TODO
-- 添加正则表达式校验输入合法
+- 支持输出 `format`
