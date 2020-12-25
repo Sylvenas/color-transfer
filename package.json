@@ -1,6 +1,6 @@
 {
     "name": "color-transfer",
-    "version": "0.0.6",
+    "version": "0.0.7",
     "description": "color transfer",
     "main": "dist/index.js",
     "module": "dist/index.esm.js",
@@ -24,6 +24,14 @@
     "dependencies": {
         "typescript": "^4.1.2"
     },
+    "keywords": [
+        "color",
+        "convert",
+        "transfer",
+        "hex",
+        "rgb",
+        "hsl"
+    ],
     "repository": {
         "type": "git",
         "url": "https://github.com/lit-forest/color-transfer.git"
