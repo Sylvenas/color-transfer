@@ -16,5 +16,5 @@
  *
  * @returns '#rrggbb[aa]' string
  */
-declare function HSLToHEX(h: number | string, s?: number, l?: number, a?: number): string;
+declare function HSLToHEX(h: number | string, s?: number, l?: number, a?: number): Array<string>;
 export default HSLToHEX;

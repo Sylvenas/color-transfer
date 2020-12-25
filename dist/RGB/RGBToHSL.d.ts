@@ -17,5 +17,5 @@
  *
  * @returns HSL string
  */
-declare function RGBToHSL(r: number | string, g?: number, b?: number, a?: number): string;
+declare function RGBToHSL(r: number | string, g?: number, b?: number, a?: number): Array<number>;
 export default RGBToHSL;

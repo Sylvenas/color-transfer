@@ -17,5 +17,5 @@
  *
  * @returns HEX string
  */
-declare function RGBToHex(r: number | string, g?: number, b?: number, a?: number): string;
+declare function RGBToHex(r: number | string, g?: number, b?: number, a?: number): Array<string>;
 export default RGBToHex;

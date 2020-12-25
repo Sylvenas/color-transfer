@@ -11,5 +11,5 @@
  *
  * @returns  hsl[a] string
  */
-declare function hexToHSL(hex: string): string;
+declare function hexToHSL(hex: string): Array<number>;
 export default hexToHSL;

@@ -83,6 +83,15 @@ var HHEEXX_REG = /^#([\da-f]{4}){1,2}$/i;
 var HSL_REG = /^hsl\(((((([12]?[1-9]?\d)|[12]0\d|(3[0-5]\d))(\.\d+)?)|(\.\d+))(deg)?|(0|0?\.\d+)turn|(([0-6](\.\d+)?)|(\.\d+))rad)((,\s?(([1-9]?\d(\.\d+)?)|100|(\.\d+))%){2}|(\s(([1-9]?\d(\.\d+)?)|100|(\.\d+))%){2})\)$/i;
 var HSLA_REG = /^hsla\(((((([12]?[1-9]?\d)|[12]0\d|(3[0-5]\d))(\.\d+)?)|(\.\d+))(deg)?|(0|0?\.\d+)turn|(([0-6](\.\d+)?)|(\.\d+))rad)(((,\s?(([1-9]?\d(\.\d+)?)|100|(\.\d+))%){2},\s?)|((\s(([1-9]?\d(\.\d+)?)|100|(\.\d+))%){2}\s\/\s))((0?\.\d+)|[01]|(([1-9]?\d(\.\d+)?)|100|(\.\d+))%)\)$/i;
 
+function isNumeric() {
+    var numbers = [];
+    for (var _i = 0; _i < arguments.length; _i++) {
+        numbers[_i] = arguments[_i];
+    }
+    var numberArr = numbers.filter(function (n) { return !isNaN(parseFloat(n.toString())) && isFinite(n); });
+    return numberArr.length === numbers.length;
+}
+
 /**
  * RGB to HEX
  *
@@ -105,6 +114,8 @@ var HSLA_REG = /^hsla\(((((([12]?[1-9]?\d)|[12]0\d|(3[0-5]\d))(\.\d+)?)|(\.\d+))
 function RGBToHex(r, g, b, a) {
     var red, green, blue, alpha;
     if (typeof r === 'number') {
+        if (!isNumeric(r, g, b, a ? a : 1))
+            throw new Error("Invalid input RGB[A] color");
         red = r.toString(16);
         green = g.toString(16);
         blue = b.toString(16);
@@ -130,11 +141,10 @@ function RGBToHex(r, g, b, a) {
         blue = "0" + blue;
     if (alpha && alpha.length == 1)
         alpha = "0" + alpha;
-    var res = "#" + red + green + blue;
     if (alpha) {
-        res += alpha;
+        return [red, green, blue, alpha];
     }
-    return res;
+    return [red, green, blue];
 }
 
 /**
@@ -159,6 +169,8 @@ function RGBToHex(r, g, b, a) {
 function RGBToHSL(r, g, b, a) {
     var red, green, blue, alpha;
     if (typeof r === 'number') {
+        if (!isNumeric(r, g, b, a ? a : 1))
+            throw new Error("Invalid input RGB[A] color");
         red = r / 255;
         green = g / 255;
         blue = b / 255;
@@ -198,9 +210,9 @@ function RGBToHSL(r, g, b, a) {
     s = +(s * 100).toFixed(1);
     l = +(l * 100).toFixed(1);
     if (alpha) {
-        return "hsla(" + h + "," + s + "%," + l + "%," + alpha + ")";
+        return [h, s, l, alpha];
     }
-    return "hsl(" + h + "," + s + "%," + l + "%)";
+    return [h, s, l];
 }
 
 /**
@@ -241,10 +253,10 @@ function HEXToRGB(h) {
         alpha = (+alpha / 255).toFixed(3);
     }
     if (h.length === 4 || h.length === 7) {
-        return "rgb(" + +red + "," + +green + "," + +blue + ")";
+        return [+red, +green, +blue];
     }
     else {
-        return "rgba(" + +red + "," + +green + "," + +blue + "," + +alpha + ")";
+        return [+red, +green, +blue, +alpha];
     }
 }
 
@@ -281,7 +293,7 @@ function hexToHSL(hex) {
     else if (hex.length === 9)
         a = "0x" + hex[7] + hex[8];
     // Then to HSL
-    var red = +r / 255, green = +g / 255, blue = +b / 255, alpha = (+a / 255).toFixed(3);
+    var red = +r / 255, green = +g / 255, blue = +b / 255, alpha = +(+a / 255).toFixed(3);
     var cmin = Math.min(red, green, blue), cmax = Math.max(red, green, blue), delta = cmax - cmin, h = 0, s = 0, l = 0;
     if (delta == 0)
         h = 0;
@@ -299,9 +311,9 @@ function hexToHSL(hex) {
     s = +(s * 100).toFixed(1);
     l = +(l * 100).toFixed(1);
     if (hex.length === 4 || hex.length === 7)
-        return "hsl(" + h + "," + s + "%," + l + "%)";
+        return [h, s, l];
     else
-        return "hsl(" + +h + "," + +s + "%," + +l + "%," + +alpha + ")";
+        return [h, s, l, alpha];
 }
 
 /**
@@ -327,6 +339,8 @@ function hexToHSL(hex) {
 function HSLToRGB(h, s, l, a) {
     var hue, saturation, lightness, alpha;
     if (typeof h === 'number') {
+        if (!isNumeric(h, s, l, a ? a : 1))
+            throw new Error("Invalid input HSL[A] color");
         // Must be fractions of 1
         hue = h;
         saturation = s / 100;
@@ -380,9 +394,9 @@ function HSLToRGB(h, s, l, a) {
     green = Math.round((green + middle) * 255);
     blue = Math.round((blue + middle) * 255);
     if (alpha) {
-        return "rgba(" + red + "," + green + "," + blue + "," + alpha + ")";
+        return [red, green, blue, alpha];
     }
-    return "rgb(" + red + "," + green + "," + blue + ")";
+    return [red, green, blue];
 }
 
 /**
@@ -406,6 +420,8 @@ function HSLToRGB(h, s, l, a) {
 function HSLToHEX(h, s, l, a) {
     var hue, saturation, lightness, alpha;
     if (typeof h === 'number') {
+        if (!isNumeric(h, s, l, a ? a : 1))
+            throw new Error("Invalid input HSL[A] color");
         // Must be fractions of 1
         hue = h;
         saturation = s / 100;
@@ -466,9 +482,9 @@ function HSLToHEX(h, s, l, a) {
     if (blue.length == 1)
         blue = "0" + blue;
     if (alpha) {
-        return "#" + red + green + blue + alpha;
+        return [red, green, blue, alpha];
     }
-    return "#" + red + green + blue;
+    return [red, green, blue];
 }
 
 exports.HEXToHSL = hexToHSL;

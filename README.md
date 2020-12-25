@@ -1,17 +1,18 @@
 # convert-color
-支持 `#RGB[A]` , `RGB[A]` , `HSL[A]` 三种格式互转    
 
-`RGB[A]` 与 `HSL[A]` 支持 `逗号`，`百分号`，`/`，`空格` 等多种分隔符，格式较多，总计支持**50**种格式互转，支持转换如下：
+English | [简体中文](./README-zh_CN.md)
 
-![convert](https://p5.music.126.net/obj/wo3DlcOGw6DClTvDisK1/5423051457/1526/5e24/bb06/4f5e0666331b5d13e2b0974cdec4d599.png)
+Supports `#RGB[A]` , `RGB[A]` , `HSL[A]` interconversion `RGB[A]` and `HSL[A]` support `comma`, `percent sign`, `/`, `space` and other separators, with a total of **50** formats conversions. The following conversions are supported:
 
-## 使用方法
+![transfer](https://p5.music.126.net/obj/wo3DlcOGw6DClTvDisK1/5423051457/1526/5e24/bb06/4f5e0666331b5d13e2b0974cdec4d599.png)
+
+## Usage
 ### install
 ``` sh
 npm i color-transfer
 ```
 
-### 使用
+### import & usage
 ``` js
 import { HEXToHSL, HEXToRGB, RGBToHEX, RGBToHSL, HSLToHEX, HSLToRGB } from 'color-transfer'
 
@@ -104,18 +105,18 @@ RGBToHSL('rgba(100% 0% 60% / 0.4)') // => [324, 100, 50, 0.4]
 * hsla(h s l / a) => rgb(r,g,b,a)rgb(r,g,b,a)
 * hsla(h s l / a%) => rgb(r,g,b,a)
 
-### 开发与测试
-* 📦 打包
+### dev & test
+* 📦 bundle
 ``` 
 npm i
 npm run build
 ```
-* 单元测试
+* unit test
 ```
 npm run test
 ```
-## 单元测试
-50种类型转换全部经过单元测试，单元测试代码覆盖率**100%**
-![单元测试](https://p6.music.126.net/obj/wo3DlcOGw6DClTvDisK1/5145843442/827c/41aa/b619/632d70a18a6c35e469c1497074453aa8.png)
+## unit test
+All 50 type conversions have passed unit tested, with **100%** unit test code coverage
+![unit test](https://p6.music.126.net/obj/wo3DlcOGw6DClTvDisK1/5145843442/827c/41aa/b619/632d70a18a6c35e469c1497074453aa8.png)
 ## TODO
-- 支持输出 `format`
+- support for format output

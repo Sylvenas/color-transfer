@@ -11,5 +11,5 @@
  *
  * @returns RGB string
  */
-declare function HEXToRGB(h: string): string;
+declare function HEXToRGB(h: string): Array<number>;
 export default HEXToRGB;

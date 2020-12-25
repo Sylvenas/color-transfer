@@ -18,5 +18,5 @@
  *
  * @returns 'rgb[a]' string
  */
-declare function HSLToRGB(h: number | string, s?: number, l?: number, a?: number): string;
+declare function HSLToRGB(h: number | string, s?: number, l?: number, a?: number): Array<number>;
 export default HSLToRGB;
