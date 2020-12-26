@@ -1,4 +1,5 @@
 import typescript from "rollup-plugin-typescript2";
+import { terser } from "rollup-plugin-terser";
 import pkg from "./package.json";
 
 const extensions = [".ts"];
@@ -8,6 +9,7 @@ const plugins = [
     typescript({
         typescript: require("typescript"),
     }),
+    terser(),
 ];
 
 export default [
